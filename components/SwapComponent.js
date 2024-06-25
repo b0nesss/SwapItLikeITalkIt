@@ -195,7 +195,51 @@ const destTokenObj = {
       }
     }
         function populateInputValue() {
-        if {
+        if (
         destToken === DEFAULT_VALUE ||
         srcToken === DEFAULT_VALUE ||
+        !outputValue
+        )
+        return;
+
+        try {
+          if (scToken !== ETH && destToken != ETH) setInputValue(outputValue) ;
+          else if (srcToken === ETH && destToken !== ETH) {
+          const outValue = toEth(toWei(outputValue, 14));
+          setInputValue (outValue);
+          } else if (srcToken !== ETH && destToken === ETH) {
+          const outValue = toEth (toWei (outputValue), 14);
+          set InputValue (outValue) ;
+          ｝
+          } catch (error) ‹
+          setInputValue ("0");
+        }
+      }
+
+      async function performSwap() {
+        setTxPending (true);
+
+        let receipt;
+
+        if (srcToken === ETH && destToken !== ETH)
+        receipt = await swapEthToToken (destToken, inputValue);
+        else if (srcToken !== ETH && destToken === ETH)
+        receipt = await swapTokenToEth(srcToken, inputValue);
+        else receipt = await swapTokenToToken(scToken, destToken, inputValue);
+
+        setTxPending (false) ;
+
+        if (receipt && ! receipt.has0wnProperty("transactionHash" ))
+          notifyError(receipt);
+        else notifySuccess();
+}
+
+      function handleInsufficientAllowance () { 
+        notifyError (
+          "Insufficient allowance. Click 'Increase allowance' to increase it."
+        );
+        SetSwapBtnText (INCREASE_ALLOWANCE) ;
+      }
+    };
+  export default SwapComponent;
         
