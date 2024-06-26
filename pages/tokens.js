@@ -13,7 +13,7 @@ const loadData = async () => {
 };
   useEffect (() => {
     loadData();
-  }, [];
+  }, []);
 
   console.log (history);
   return (
@@ -22,7 +22,7 @@ const loadData = async () => {
     <div className="p-[80px]">
     <Table history={history} />
     </div>
-    <Footer />
+    <Footer/>
     </div>
   );
 };

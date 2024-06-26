@@ -6,7 +6,7 @@ import Selector from './Selector';
 import SingleCard from './SingleCard';
 import Table from './Table';
 import SwapComponent from './SwapComponent';
-import TokenBalance from './tokenBalance';
+import TokenBalance from './TokenBalance';
 import TransactionStatus from './TransactionStatus';
 
 

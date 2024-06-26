@@ -1,4 +1,4 @@
-import React, f useEffect, useState, useRef } from "react";
+import React,{ useEffect, useState, useRef } from "react";
 import { useAccount } from "wagmi"; import { ethers } from "ethers";
 import toast, { Toaster } from "react-hot-toast";
 import {
@@ -8,7 +8,7 @@ import {
 } from "@heroicons/react/outline";
 
 // INTERNAL IMPORT
-import { SingleCard, TransactionStatus } from "-/index";
+import { SingleCard, TransactionStatus } from "../components/index";
 import {
   getTokenAddress, 
   getTokenBalance, 
