@@ -1,6 +1,6 @@
 import { BigNumber, ethers } from "ethers";
 import { contract, tokenContract } from "./contract";
-import { toEther, toWei } from "./utils";
+import { toEth, toWei } from "./utils";
 
 export async function swapEthToToken(tokenName, amount) {
     try {
@@ -89,8 +89,8 @@ export async function getAllHistory() {
             historyId: history.historyId.toNumber(),
             tokenA: history.tokenA,
             tokenB: history.tokenB,
-            inputValue: toEther(history?.inputValue),
-            outputValue: toEther(history?.outputValue),
+            inputValue: toEth(history?.inputValue),
+            outputValue: toEth(history?.outputValue),
             userAddress: history.userAddress,
 
         }))

@@ -4,25 +4,26 @@ import React, { useEffect, useState } from "react";
 
 import { Footer, Header, Table } from "../components/index";
 import { getAllHistory } from "../utils/context";
-const tokens = () =>{
-const [history, setHistory] = useState([]);
-const loadData = async () => {
-  const data = await getAllHistory();
-  if(data !== undefined)
-  setHistory(data.reverse());
-};
-  useEffect (() => {
+const tokens = () => {
+  const [history, setHistory] = useState([]);
+  const loadData = async () => {
+    const data = await getAllHistory();
+    console.log();
+    if (data !== undefined)
+      setHistory(data.reverse());
+  };
+  useEffect(() => {
     loadData();
   }, []);
 
   console.log(`${history} is history`);
   return (
     <div className="bg-[#1A1A1A] ">
-    <Header />
-    <div className="p-[80px]">
-    <Table history={history} />
-    </div>
-    <Footer/>
+      <Header />
+      <div className="p-[80px]">
+        <Table history={history} />
+      </div>
+      <Footer />
     </div>
   );
 };
