@@ -1,6 +1,6 @@
 # SwapItLikeITalkIt
 
-This repository contains the code for a Cross-Chain DApp, which allows users to interact with multiple blockchain networks simultaneously. The DApp is built using Solidity, Javascript and uses various frameworks like ethers.js, hardhat, next.js and utilizes CCIP for cross-chain communication.This DApp was made for the Summer Open Projects of GDSC, IIT Roorkee.
+This repository contains the code for a Cross-Chain DApp, which allows users to interact with multiple blockchain networks simultaneously. The DApp is built using Solidity, Javascript and uses various frameworks like ethers.js, hardhat, next.js and utilizes CCIP for cross-chain communication.
 
 ## Table of Contents
 
