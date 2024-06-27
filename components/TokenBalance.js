@@ -10,65 +10,65 @@ import {
 // INTERNAL IMPORT
 import { TransactionStatus } from "./index";
 import {
-getTokenAddress,
-getTokenBalance,
-increaseAllowance,
-}from "../utils/context";
+  getTokenAddress,
+  getTokenBalance,
+  increaseAllowance,
+} from "../utils/context";
 
 const TokenBalance = ({ name, walletAddress }) => {
-const [balance, setBalance] = usestate("-");
-const [tokenAddress, setTokenAddress] = useState();
+  const [balance, setBalance] = useState("-");
+  const [tokenAddress, setTokenAddress] = useState();
 
-const [copyIcon, setCopyIcon] = useState({ icon: ClipboardIcon });
+  const [copyIcon, setCopyIcon] = useState({ icon: ClipboardIcon });
 
-const [txPending, setTxPending] = useState(false);
+  const [txPending, setTxPending] = useState(false);
 
-const notifyError = (msg) => toast.error(msg, { duration: 6000 });
-const notifySuccess = () => toast. success("Transaction completed.");
+  const notifyError = (msg) => toast.error(msg, { duration: 6000 });
+  const notifySuccess = () => toast.success("Transaction completed.");
 
-useEffect (() => {
-  if (name && walletAddress) {
-  fetchTokenBalance();
-  fetchTokenAddress ();
-  } else setBalance ("-");
-  },[name, walletAddress]);
+  useEffect(() => {
+    if (name && walletAddress) {
+      fetchTokenBalance();
+      fetchTokenAddress();
+    } else setBalance("-");
+  }, [name, walletAddress]);
 
-  async function fetchTokenBalance () {
-  const bal = await getTokenBalance (name, walletAddress) ;
-  console.log (bal);
-  const fBal = ethers.utils.formatUnits(bal.toString(), 18);
-  setBalance(fBal.toString());
+  async function fetchTokenBalance() {
+    const bal = await getTokenBalance(name, walletAddress);
+    // console.log(`${bal} is balance`);
+    const fBal = ethers.utils.formatUnits(bal.toString(), 18);
+    setBalance(fBal.toString());
   }
 
-  async function fetchTokenAddress () {
-    const address = await getTokenAddress (name) ;
-    setTokenAddress (address) ;
+  async function fetchTokenAddress() {
+    const address = await getTokenAddress(name);
+    setTokenAddress(address);
   }
-    return (
+  return (
     <div className="flex mx-2 border-[1px] rounded-1 rounded-r-lg border-[#7765F3]">
-    <div className="flex items-center bg-zinc-900 text-zinc-300 w-fit p-2 px-3
+      <div className="flex items-center bg-zinc-900 text-zinc-300 w-fit p-2 px-3
     rounded-1-1g">
-      <p className="text-sm">{name}</p>
-      <p className="bg-zinc-800 p-0.5 px-3 ml-3 rounded-lg text-zinc-100">
-        {balance}
-      </p>
-    </div>
+        <p className="text-sm">{name}</p>
+        <p className="bg-zinc-800 p-0.5 px-3 ml-3 rounded-lg text-zinc-100">
+          {balance}
+        </p>
+      </div>
 
-    <div className="flex items-center p-2 px-2 bg-[#7765F3] rounded-r-lg">
-     <copyIcon.icon
-       className="h-6 cursor-pointer"
-       onClick={() => {
-        navigator.clipboard.writeText (tokenAddress);
-        setCopyIcon({ icon: ClipboardCheckIcon });
-       }}
+      <div className="flex items-center p-2 px-2 bg-[#7765F3] rounded-r-lg">
+        <copyIcon.icon
+          className="h-6 cursor-pointer"
+          onClick={() => {
+            navigator.clipboard.writeText(tokenAddress);
+            setCopyIcon({ icon: ClipboardCheckIcon });
+          }}
         />
-        </div>
+      </div>
 
-        {txPending && < TransactionStatus />}
+      {txPending && < TransactionStatus />}
 
-        <Toaster/>
-        </div>
-    );
-  };
+      <Toaster />
+    </div>
+  );
+};
 
-  export default TokenBalance;
+export default TokenBalance;

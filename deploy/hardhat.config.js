@@ -1,18 +1,22 @@
-require("@nomicfoundation/hardhat-toolbox");
+require('dotenv').config();
+
+import { sepolia } from "wagmi/chains";
+import "@nomicfoundation/hardhat-toolbox";
 
 /** @type import('hardhat/config').HardhatUserConfig */
 
 
-const NEXT_PUBLIC_PRIVATE_KEY = "";
-module.exports = {
-  solidity: "0.8.0",
-  defaultNetwork: "matic",
-  networks: {
-    hardhat: {},
-    polygon_mumbai: {
-      url: 'https://eth-sepolia.g.alchemy.com/v2/HjwQ1LphiIbwUgdsDyMeN8e7HnN9bZ6B',
-      accounts: [`0x${NEXT_PUBLIC_PRIVATE_KEY}`],
-    },
+// const NEXT_PUBLIC_PRIVATE_KEY = process.env.PRIVATE_KEY;
+export const solidity = "0.8.0";
+export const defaultNetwork = "hardhat";
+export const networks = {
+  hardhat: {},
+  sepolia: {
+    url: process.env.SEPOLIA_RPC_URL || "",
+    accounts:
+      process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+    blockConfirmations: 3,
+    chainId:11155111,
   },
 };
 

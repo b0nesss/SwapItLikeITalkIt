@@ -2,20 +2,20 @@ import React, { useEffect, useState } from "react";
 
 // INTERNAL IMPORT
 
-import { Footer, Header, Table } from ". ./components/index";
+import { Footer, Header, Table } from "../components/index";
 import { getAllHistory } from "../utils/context";
 const tokens = () =>{
 const [history, setHistory] = useState([]);
 const loadData = async () => {
   const data = await getAllHistory();
-  
-  setHistory (data.reverse());
+  if(data !== undefined)
+  setHistory(data.reverse());
 };
   useEffect (() => {
     loadData();
   }, []);
 
-  console.log (history);
+  console.log(`${history} is history`);
   return (
     <div className="bg-[#1A1A1A] ">
     <Header />

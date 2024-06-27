@@ -23,7 +23,7 @@ const Card = () => {
       <div className="space-y-2 ">
         <h2 className="text-3xl font-bold">All Listed Token For Sale</h2> 
         <p className="font-serif text-sm text-gray-400">
-          Qualisque erroribus usu at, duo te agam soluta mucius.
+          Tokens, Tokens and .......... more Tokens.
           </p>
         </div>
       <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-4">

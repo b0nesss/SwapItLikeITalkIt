@@ -1,6 +1,7 @@
 import "../styles/globals.css";
-
+// import { ethers, providers } from "ethers";
 import merge from "lodash/merge";
+
 import "@rainbow-me/rainbowkit/styles.css";
 
 import {
@@ -11,19 +12,16 @@ import {
 } from "@rainbow-me/rainbowkit";
 
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
+import { publicProvider } from "wagmi/providers/public";
+import { alchemyProvider } from "wagmi/providers/alchemy";
 // import { infuraProvider } from "ethers.providers"
-const API_KEY = process.env.NEXT_PUBLIC_SEPOLIA_RPC_URL;
-const infuraProvider = new ethers.providers.InfuraProvider(
-  "sepolia",
-  API_KEY,
-);
+const API_KEY = process.env.SEPOLIA_RPC;
+// const infuraProvider = new ethers.providers.InfuraProvider("sepolia",API_KEY);
 
 
 const { chains, provider } = configureChains(
   [chain.sepolia],
-  [
-    infuraProvider,
-  ]
+  [alchemyProvider({ apiKey: API_KEY }), publicProvider()],
 );
 
 const { connectors } = getDefaultWallets({
