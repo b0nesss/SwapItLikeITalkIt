@@ -1,6 +1,6 @@
 import React from "react";
 
-const Table = ({history}) => {
+const Table = ({ history }) => {
   return (
     <div className="container p-2 mx-auto sm: p-4 text-gray-100 bg-[#7765F3]">
       <h2 className="mb-4 text-2xl font-semibold leadi">Recent Transactions</h2>

@@ -69,7 +69,7 @@ const Header = () => {
           </ul>
         </div>
         <div className="items-center flex-shrink-0 hidden lg:flex">
-          <TokenBalance name={"USD COIN"} walletAddress={address} />
+          <TokenBalance name={"Tether USD"} walletAddress={address} />
           <TokenBalance name={"SHIBA INU"} walletAddress={address} />
           <ConnectButton />
         </div>

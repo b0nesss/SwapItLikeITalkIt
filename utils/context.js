@@ -7,23 +7,25 @@ export async function swapEthToToken(tokenName, amount) {
         let tx = { value: toWei(amount) };
 
         const contractObj = await contract();
-        const data = contractObj.swapEthToToken(tokenName, tx);
-        console.log(data);
+        const data = await contractObj.swapEthToToken(tokenName, tx);
+        const receipt = await data.wait();
+        console.log(receipt);
+        return receipt;
     } catch (e) {
         console.log(e);
     }
 }
 
-export async function hasValidAllownace(tokenName, owner, amount) {
+export async function hasValidAllowance(owner, tokenName, amount) {
     try {
         const contractObj = await contract();
         const address = await contractObj.getTokenAddress(tokenName);
         const tokenContractObj = await tokenContract(address);
         const data = await tokenContractObj.allowance(owner, "0x78c83fAF47d814E70F6bF3948738703C93BfEDEb")
         console.log(data);
-        const result = BigNumber.from(data.toStrin()).gte(BigNumber.from(toWei(amount)));
-        return result;
+        const result = BigNumber.from(data.toString()).gte(BigNumber.from(toWei(amount)));
         console.log(result);
+        return result;
     } catch (e) {
         console.log(e);
     }
@@ -72,7 +74,7 @@ export async function increaseAllowance(tokenName, amount) {
     const contractObj = await contract();
     const address = await contractObj.getTokenAddress(tokenName);
     const tokenContractObj = await tokenContract(address);
-    const data = await tokenContractObj.increaseAllowance("0x78c83fAF47d814E70F6bF3948738703C93BfEDEb", toWei(amount));
+    const data = await tokenContractObj.approve("0x78c83fAF47d814E70F6bF3948738703C93BfEDEb", toWei(amount));
     const receipt = await data.wait();
     console.log(receipt);
     return receipt;
@@ -96,7 +98,6 @@ export async function getAllHistory() {
     } catch (e) {
         console.log(e);
     }
-
 
 }
 

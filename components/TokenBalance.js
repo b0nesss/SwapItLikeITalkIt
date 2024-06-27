@@ -35,8 +35,8 @@ const TokenBalance = ({ name, walletAddress }) => {
 
   async function fetchTokenBalance() {
     const bal = await getTokenBalance(name, walletAddress);
-    // console.log(`${bal} is balance`);
     const fBal = ethers.utils.formatUnits(bal.toString(), 18);
+    console.log(`${fBal} is balance`);
     setBalance(fBal.toString());
   }
 
